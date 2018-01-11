@@ -31,7 +31,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity extends AppCompatActivity {
     ListView lv;
-    ArrayAdapter<String> adapter;
+    MyAdapter adapter;
     MyHandler dataHandler;
 
     @Override
@@ -57,9 +57,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case R.id.menu_reload:
-                new Thread() {
+                new Thread(){
                     @Override
                     public void run() {
                         super.run();
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                             StringBuilder sb = new StringBuilder();
                             String str;
 
-                            while ((str = br.readLine()) != null) {
+                            while ((str = br.readLine()) != null)
+                            {
                                 sb.append(str);
                             }
                             String str1 = sb.toString();
@@ -95,12 +97,8 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String data[] = new String[dataHandler.newsItems.size()];
-                                    for (int i = 0; i < data.length; i++) {
-                                        data[i] = dataHandler.newsItems.get(i).title;
-                                    }
-                                    adapter = new ArrayAdapter<String>(MainActivity.this,
-                                            android.R.layout.simple_list_item_1, data);
+                                    adapter = new MyAdapter(MainActivity.this,
+                                            dataHandler.newsItems);
                                     lv.setAdapter(adapter);
                                 }
                             });
@@ -122,4 +120,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
