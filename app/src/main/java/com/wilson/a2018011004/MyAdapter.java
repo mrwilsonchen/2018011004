@@ -9,15 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
 
 /**
  * Created by Student on 2018/1/11.
  */
+
 public class MyAdapter extends BaseAdapter {
     Context context;
     ArrayList<Mobile01NewsItem> mylist;
@@ -59,8 +58,11 @@ public class MyAdapter extends BaseAdapter {
         {
             viewHolder = (ViewHolder) view.getTag();
         }
+        Log.d("NET", "title:" + mylist.get(i).title + ", img:" + mylist.get(i).imgurl);
         viewHolder.tv1.setText(mylist.get(i).title);
         viewHolder.tv2.setText(mylist.get(i).description);
+        Log.d("NET", "Pisasso:" +mylist.get(i).imgurl);
+        Picasso.with(context).load(mylist.get(i).imgurl).into(viewHolder.img);
         return view;
     }
     static class ViewHolder
