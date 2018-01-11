@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 super.run();
                 String str_url = "https://www.mobile01.com/rss/hottopics.xml";
                 //https://www.mobile01.com/rss/news.xml
-                //1
+                //123
+                //567
                 URL url = null;
                 try {
                     url = new URL(str_url);
